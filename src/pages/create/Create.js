@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { useHistory } from 'react-router'
+import { useHistory } from 'react-router-dom'
 
 import { useFetch } from '../../hooks/useFetch'
 import './Create.css'
@@ -34,7 +34,7 @@ const Create = () => {
   // Redirect the user when we get data response
   useEffect(() => {
     if (data) {
-
+      history.push('/')
     }
   }, [data])
 
