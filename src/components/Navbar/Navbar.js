@@ -1,4 +1,5 @@
-import { Link } from "react-router-dom";
+import { Link } from "react-router-dom"
+import { SearchBar } from "../SearchBar/SearchBar"
 
 import "./Navbar.css";
 
@@ -9,6 +10,7 @@ const Navbar = () => {
             <Link to="/" className="brand">
                 <h1>The Recipe</h1>
             </Link>
+            <SearchBar />
             <Link to="/create">Create Recipe</Link>
         </nav>
     </div>

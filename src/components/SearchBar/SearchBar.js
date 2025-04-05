@@ -2,9 +2,9 @@
 import { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 
-import './Searchbar.css'
+import './SearchBar.css'
 
-const SearchBar = () => {
+export const SearchBar = () => {
     const [term, setTerm] = useState('')
     const history = useHistory()
 
@@ -28,5 +28,3 @@ const SearchBar = () => {
         </div>
     )
 }
-
-export default SearchBar
