@@ -12,7 +12,7 @@ const Home = () => {
   useEffect(() => {
     setIsPending(true)
 
-    appFirestore.collection('recipes').get().then((snapshot) => {
+    const unsub = appFirestore.collection('recipes').onSnapshot((snapshot) => {
       if (snapshot.empty) {
         setError('No recipes to load')
         setIsPending(false)
@@ -24,10 +24,12 @@ const Home = () => {
         setData(results)
         setIsPending(false)
       }
-    }).catch(err => {
+    }, (err) => {
       setError(err.message)
       setIsPending(false)
     })
+
+    return () => unsub()
   }, [])
 
   return (

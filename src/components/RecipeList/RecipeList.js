@@ -2,6 +2,8 @@ import { Link } from 'react-router-dom';
 
 import './RecipeList.css';
 import { useTheme } from '../../hooks/useTheme';
+import DeleteIcon from '../../assets/delete-icon.png';
+import { appFirestore } from '../../firebase/config';
 
 const RecipeList = ({ recipes }) => {
   const { mode } = useTheme()
@@ -13,6 +15,10 @@ const RecipeList = ({ recipes }) => {
     )
   }
 
+  const handleClick = (id) => {
+    appFirestore.collection('recipes').doc(id).delete()
+  }
+
   return (
     <div className="recipe-list">
         {recipes.map(recipe => (
@@ -21,6 +27,12 @@ const RecipeList = ({ recipes }) => {
                 <p>{recipe.cookingTime} to make.</p>
                 <div>{recipe.method.substring(0, 100)}...</div>
                 <Link to={`/recipes/${recipe.id}`}>Cook This</Link>
+                <img 
+                  className="delete"
+                  src={DeleteIcon}
+                  onClick={() => handleClick(recipe.id)}
+                  alt="Delete Icon"
+                />
             </div>
         ))}
     </div>
